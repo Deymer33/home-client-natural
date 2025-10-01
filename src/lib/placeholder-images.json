@@ -1,3 +1,64 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "Lush green leaves with water droplets, creating a fresh and natural background.",
+      "imageUrl": "https://images.unsplash.com/photo-1730446185656-f61b551bd734?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsdXNoJTIwbGVhdmVzfGVufDB8fHx8MTc1OTMzODI4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "lush leaves"
+    },
+    {
+      "id": "aloe-vera-gel",
+      "description": "Aloe vera gel in a jar with fresh aloe leaves.",
+      "imageUrl": "https://images.unsplash.com/photo-1613143798921-c342c82c32e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhbG9lJTIwdmVyYXxlbnwwfHx8fDE3NTkyNTY0MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "aloe vera"
+    },
+    {
+      "id": "turmeric-capsules",
+      "description": "A bottle of turmeric capsules with turmeric root and powder.",
+      "imageUrl": "https://images.unsplash.com/photo-1504632236107-4ae29a44f388?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx0dXJtZXJpYyUyMHNwaWNlfGVufDB8fHx8MTc1OTMzMzAzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "turmeric spice"
+    },
+    {
+      "id": "lavender-oil",
+      "description": "A small bottle of lavender essential oil with lavender flowers.",
+      "imageUrl": "https://images.unsplash.com/photo-1655998317858-24ee9d67ee1c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsYXZlbmRlciUyMG9pbHxlbnwwfHx8fDE3NTkzMzgyODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "lavender oil"
+    },
+    {
+      "id": "ginseng-tea",
+      "description": "A cup of ginseng tea with ginseng root on the side.",
+      "imageUrl": "https://images.unsplash.com/photo-1749215784680-a0bb6b7ac950?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxnaW5zZW5nJTIwdGVhfGVufDB8fHx8MTc1OTMzODI4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ginseng tea"
+    },
+    {
+      "id": "service-nutrition",
+      "description": "A nutritionist consulting with a client, surrounded by fresh fruits and vegetables.",
+      "imageUrl": "https://images.unsplash.com/photo-1626037642385-b18452f27454?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxudXRyaXRpb25pc3QlMjBjb25zdWx0YXRpb258ZW58MHx8fHwxNzU5MzM4MjgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "nutritionist consultation"
+    },
+    {
+      "id": "service-herbalism",
+      "description": "Hands grinding herbs with a mortar and pestle.",
+      "imageUrl": "https://images.unsplash.com/photo-1630042567310-99b690dee7bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxoZXJicyUyMG1vcnRhcnxlbnwwfHx8fDE3NTkzMjE0MjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "herbs mortar"
+    },
+    {
+      "id": "testimonial-1",
+      "description": "A smiling woman in her 30s.",
+      "imageUrl": "https://images.unsplash.com/photo-1662850886700-4ec19bd30d11?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzbWlsaW5nJTIwd29tYW58ZW58MHx8fHwxNzU5Mjg5NTIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smiling woman"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "A happy man in his 40s.",
+      "imageUrl": "https://images.unsplash.com/photo-1534614971-6be99a7a3ffd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxoYXBweSUyMG1hbnxlbnwwfHx8fDE3NTkyNzc2MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "happy man"
+    },
+    {
+      "id": "testimonial-3",
+      "description": "A content-looking person outdoors.",
+      "imageUrl": "https://images.unsplash.com/photo-1752716227252-b59d6af78e37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBuYXR1cmV8ZW58MHx8fHwxNzU5MzMyMDI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person nature"
+    }
+  ]
 }
