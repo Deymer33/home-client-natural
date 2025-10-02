@@ -15,7 +15,7 @@ export default function Logo() {
         height={80}
       />
       <span className="font-headline text-2xl font-bold text-primary">
-        Natural heal center
+        
       </span>
     </Link>
   );
