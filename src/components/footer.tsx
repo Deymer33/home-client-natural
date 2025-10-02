@@ -37,7 +37,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t">
-          <p className="text-center text-sm text-muted-foreground">© {new Date().getFullYear()} NaturaLife. All rights reserved.</p>
+          <p className="text-center text-sm text-muted-foreground">© {new Date().getFullYear()} Natural healt center. All rights reserved.</p>
         </div>
       </div>
     </footer>
