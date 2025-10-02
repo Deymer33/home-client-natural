@@ -9,10 +9,10 @@ export default function Logo() {
       aria-label="Natural health center"
     >
       <Image 
-        src="/logo.png"  // Next busca en /public
+        src="/logo.png"  //  busca en /public
         alt="Logo Natural Health Center"
-        width={40}       // ajusta el tamaño
-        height={40}
+        width={100}       // ajusta el tamaño
+        height={80}
       />
       <span className="font-headline text-2xl font-bold text-primary">
         Natural heal center
