@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import ProductCard from '@/components/product-card';
 import ServiceCard from '@/components/service-card';
-import AiRecommendations from '@/components/ai-recommendations';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ArrowRight, Star } from 'lucide-react';
@@ -96,12 +95,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI Recommendations */}
-      <section className="py-16 md:py-24">
-        <div className="container max-w-4xl mx-auto">
-          <AiRecommendations />
-        </div>
-      </section>
+    
 
       {/* Testimonials */}
       <section className="py-16 md:py-24 bg-card">
