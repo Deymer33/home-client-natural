@@ -7,6 +7,12 @@
       "imageHint": "lush leaves"
     },
     {
+      "id": "hero-pro-health",
+      "description": "A tranquil nature scene with a river and lush greenery, representing health and nature.",
+      "imageUrl": "https://picsum.photos/seed/10/1200/800",
+      "imageHint": "nature river"
+    },
+    {
       "id": "aloe-vera-gel",
       "description": "Aloe vera gel in a jar with fresh aloe leaves.",
       "imageUrl": "https://images.unsplash.com/photo-1613143798921-c342c82c32e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxhbG9lJTIwdmVyYXxlbnwwfHx8fDE3NTkyNTY0MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
@@ -59,6 +65,42 @@
       "description": "A content-looking person outdoors.",
       "imageUrl": "https://images.unsplash.com/photo-1752716227252-b59d6af78e37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBuYXR1cmV8ZW58MHx8fHwxNzU5MzMyMDI5fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person nature"
+    },
+    {
+      "id": "service-blood-test",
+      "description": "Microscopic view of blood cells.",
+      "imageUrl": "https://picsum.photos/seed/11/400/400",
+      "imageHint": "blood cells"
+    },
+    {
+      "id": "service-physiotherapy",
+      "description": "Physiotherapist assisting a patient.",
+      "imageUrl": "https://picsum.photos/seed/12/400/400",
+      "imageHint": "physiotherapy patient"
+    },
+    {
+      "id": "service-hydrotherapy",
+      "description": "Person relaxing in a hydrotherapy pool.",
+      "imageUrl": "https://picsum.photos/seed/13/400/400",
+      "imageHint": "hydrotherapy pool"
+    },
+    {
+      "id": "service-biological-medicine",
+      "description": "Scientific representation of biological medicine.",
+      "imageUrl": "https://picsum.photos/seed/14/400/400",
+      "imageHint": "biological medicine"
+    },
+    {
+      "id": "service-natural-meds",
+      "description": "Bottles of natural remedies and herbs.",
+      "imageUrl": "https://picsum.photos/seed/15/400/400",
+      "imageHint": "natural remedies"
+    },
+    {
+      "id": "service-iv-therapy",
+      "description": "IV drip bag for intravenous therapy.",
+      "imageUrl": "https://picsum.photos/seed/16/400/400",
+      "imageHint": "IV therapy"
     }
   ]
 }
