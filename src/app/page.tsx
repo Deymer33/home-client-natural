@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import ProductCard from '@/components/product-card';
 import ServiceCard from '@/components/service-card';
-import AiRecommendations from '@/components/ai-recommendations';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ArrowRight, Star, Leaf, Heart, BookOpen, Sun, Wind, Droplets, Sparkles } from 'lucide-react';
@@ -15,15 +14,56 @@ import { Textarea } from "@/components/ui/textarea";
 export default function Home() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'hero-pro-health');
   const services = [
-    { name: 'Examen de Sangre Viva', description: 'Análisis profundo para un diagnóstico preventivo.', imageId: 'service-blood-test' },
-    { name: 'Fisioterapia y Terapia Vital', description: 'Restauración integral que combina técnicas tradicionales y naturales.', imageId: 'service-physiotherapy' },
-    { name: 'Hidroterapia', description: 'El poder curativo del agua para estimular la circulación y eliminar toxinas.', imageId: 'service-hydrotherapy' },
-    { name: 'Medicina Biológica', description: 'Terapias biológicas para la restauración de la salud.', imageId: 'service-biological-medicine'},
-    { name: 'Consultas Nutricionales', description: 'Planes de alimentación personalizados para tus objetivos.', imageId: 'service-nutrition' },
-    { name: 'Alimentación Terapéutica', description: 'Platos veganos equilibrados con ingredientes frescos y naturales.', imageId: 'service-herbalism' },
-    { name: 'Medicamentos Naturales', description: 'Productos 100% naturales, desde hierbas hasta fórmulas personalizadas.', imageId: 'service-natural-meds'},
-    { name: 'Terapias Intravenosas', description: 'Nutrientes y vitaminas administrados directamente para una absorción completa.', imageId: 'service-iv-therapy' },
-  ];
+  { 
+    name: 'Examen de Sangre Viva',
+    slug: 'examen-de-sangre-viva',
+    description: 'Análisis profundo para un diagnóstico preventivo.',
+    imageId: 'service-blood-test'
+  },
+  { 
+    name: 'Fisioterapia y Terapia Vital',
+    slug: 'fisioterapia-y-terapia-vital',
+    description: 'Restauración integral que combina técnicas tradicionales y naturales.',
+    imageId: 'service-physiotherapy'
+  },
+  {
+    slug: "hidroterapia",
+    name: "Hidroterapia",
+    description: "El poder curativo del agua para estimular la circulación y eliminar toxinas.",
+    imageId: "service-hydrotherapy",
+  },
+  {
+    slug: "medicina-biologica",
+    name: "Medicina Biológica",
+    description: "Terapias biológicas para la restauración de la salud.",
+    imageId: "service-biological-medicine",
+  },
+  {
+    slug: "consultas-nutricionales",
+    name: "Consultas Nutricionales",
+    description: "Planes de alimentación personalizados para tus objetivos.",
+    imageId: "service-nutrition",
+  },
+  {
+    slug: "alimentacion-terapeutica",
+    name: "Alimentación Terapéutica",
+    description: "Platos veganos equilibrados con ingredientes frescos y naturales.",
+    imageId: "service-herbalism",
+  },
+  {
+    slug: "medicamentos-naturales",
+    name: "Medicamentos Naturales",
+    description: "Productos 100% naturales, desde hierbas hasta fórmulas personalizadas.",
+    imageId: "service-natural-meds",
+  },
+  {
+    slug: "terapias-intravenosas",
+    name: "Terapias Intravenosas",
+    description: "Nutrientes y vitaminas administrados directamente para una absorción completa.",
+    imageId: "service-iv-therapy",
+  },
+];
+
   const programs = [
     { name: 'Básico', duration: '21 días', price: '$70/día', description: 'Desintoxicación profunda.', accommodation: 'Habitación compartida' },
     { name: 'Plena Salud', duration: '21 días', price: '$100/día', description: 'Salud total.', accommodation: 'Habitación compartida' },
@@ -161,8 +201,13 @@ export default function Home() {
                                   <p className="text-sm text-muted-foreground mt-2">{service.description}</p>
                               </CardContent>
                               <CardFooter className="p-4 pt-0">
-                                  <Button variant="outline" size="sm">Ver más</Button>
+                                <Link href={`/services/${service.slug}`} className="w-full">
+                                    <Button variant="outline" size="sm" className="w-full">
+                                    Ver más
+                                    </Button>
+                                </Link>
                               </CardFooter>
+
                           </Card>
                       );
                   })}

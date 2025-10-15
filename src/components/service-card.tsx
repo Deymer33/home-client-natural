@@ -32,8 +32,11 @@ export default function ServiceCard({ name, description, imageUrl, imageHint }: 
       </CardContent>
       <CardFooter className="p-6 pt-0">
         <Button variant="outline" asChild>
-          <Link href="/services">Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>
+          <Link href={`/services/${name.toLowerCase().replace(/\s+/g, '-')}`}>
+            Learn More <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </Button>
+
       </CardFooter>
     </Card>
   );
