@@ -50,11 +50,13 @@ model Booking {
   message    String?
   paid       Boolean  @default(false)
   paymentId  String?
+  status     String   @default("pendiente") // 👈 este campo debe existir
   createdAt  DateTime @default(now())
 
   store      Store    @relation(fields: [storeId], references: [id])
   storeId    Int
 }
+
 
 model User {
   id        Int      @id @default(autoincrement())

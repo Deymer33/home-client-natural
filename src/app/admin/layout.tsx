@@ -1,28 +1,17 @@
-import { ReactNode } from "react";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import BookingTable from "@/components/admin/booking-table";
 
-export default async function AdminLayout({ children }: { children: ReactNode }) {
+export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 
-  // 🔒 Protección
-  if (!session?.user || session.user.role !== "admin") {
-    redirect("/login"); // 👈 IMPORTANTE: redirigir al login global
-  }
+  if (!session?.user) redirect("/login");
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="border-b bg-white shadow-sm p-4 flex justify-between">
-        <div>
-          <h1 className="font-bold text-lg">Panel Administrativo</h1>
-          <p className="text-sm text-gray-500">
-            Sesión: {session.user.email} ({session.user.role})
-          </p>
-        </div>
-      </header>
-
-      <main className="container mx-auto py-10">{children}</main>
+    <div className="container py-10">
+      <h1 className="text-3xl font-bold mb-6">Citas registradas</h1>
+      <BookingTable />
     </div>
   );
 }
