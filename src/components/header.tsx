@@ -1,23 +1,34 @@
 "use client";
 
-import Link from 'next/link';
-import { Menu } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
-import Logo from '@/components/logo';
+import Link from "next/link";
+import { Menu, ShoppingCart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import Logo from "@/components/logo";
+import { useCart } from "@/context/cart-context";
 
 const navLinks = [
-  { href: '/products', label: 'Products' },
-  { href: '/services', label: 'Services' },
-  { href: '/locations', label: 'Locations' },
-  { href: '/about', label: 'About Us' },
+  { href: "/products", label: "Products" },
+  { href: "/services", label: "Services" },
+  { href: "/locations", label: "Locations" },
+  { href: "/about", label: "About Us" },
 ];
 
 export default function Header() {
+  const { items } = useCart();
+
+  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Logo />
+
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
@@ -29,10 +40,25 @@ export default function Header() {
             </Link>
           ))}
         </nav>
+
         <div className="flex items-center gap-4">
           <Button variant="secondary" className="hidden md:flex" asChild>
             <Link href="/services">Book Now</Link>
           </Button>
+
+          {/* CARRITO */}
+          <Button variant="ghost" size="icon" className="relative" asChild>
+            <Link href="/cart">
+              <ShoppingCart className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+          </Button>
+
+          {/* Menú móvil */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
