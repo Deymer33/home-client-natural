@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// 📦 GET: obtener todas las citas (con filtro opcional por tienda)
+// GET: obtener todas las citas (con filtro opcional por tienda)
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const storeCode = searchParams.get("store");
@@ -17,7 +17,7 @@ export async function GET(request: Request) {
   return NextResponse.json(bookings);
 }
 
-// 🆕 POST: crear una nueva cita (desde el formulario del cliente)
+// POST: crear una nueva cita (desde el formulario del cliente)
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
   }
 }
 
-// ✏️ PATCH: actualizar estado de una cita
+// PATCH: actualizar estado de una cita
 export async function PATCH(request: Request) {
   try {
     const { id, status } = await request.json();

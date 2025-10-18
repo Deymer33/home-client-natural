@@ -5,6 +5,8 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 import BookingTable from "@/components/admin/booking-table";
 import ProductTable from "@/components/admin/product-table";
+import OrderTable from "@/components/admin/order-table";
+
 
 import {
   Tabs,
@@ -26,6 +28,7 @@ export default async function DashboardPage() {
         <TabsList>
           <TabsTrigger value="bookings">Citas</TabsTrigger>
           <TabsTrigger value="products">Productos</TabsTrigger>
+        <TabsTrigger value="orders">Pedidos</TabsTrigger>
         </TabsList>
 
         {/* --- Citas --- */}
@@ -38,6 +41,11 @@ export default async function DashboardPage() {
         <TabsContent value="products">
           <h2 className="text-2xl font-semibold mb-4">Productos</h2>
           <ProductTable />
+        </TabsContent>
+        {/* --- Pedidos --- */}
+        <TabsContent value="orders">
+          <h2 className="text-2xl font-semibold mb-4">Pedidos</h2>
+          <OrderTable />
         </TabsContent>
       </Tabs>
     </div>

@@ -11,52 +11,52 @@ datasource db {
 }
 
 model Store {
-  id        Int       @id @default(autoincrement())
-  name      String     // Ej: "México" o "USA"
-  code      String     @unique // Ej: "mexico" o "usa"
+  id        Int            @id @default(autoincrement())
+  name      String // Ej: "México" o "USA"
+  code      String         @unique // Ej: "mexico" o "usa"
   products  ProductStore[]
   bookings  Booking[]
-  createdAt DateTime   @default(now())
+  orders    Order[]
+  createdAt DateTime       @default(now())
 }
 
 model Product {
-  id          Int             @id @default(autoincrement())
+  id          Int            @id @default(autoincrement())
   name        String
   description String?
   basePrice   Float
   imageUrl    String?
-  active      Boolean         @default(true)
-  createdAt   DateTime        @default(now())
+  active      Boolean        @default(true)
+  createdAt   DateTime       @default(now())
   stores      ProductStore[]
 }
 
 // Relación intermedia que conecta productos y tiendas
 model ProductStore {
-  id        Int       @id @default(autoincrement())
-  store     Store     @relation(fields: [storeId], references: [id])
+  id        Int     @id @default(autoincrement())
+  store     Store   @relation(fields: [storeId], references: [id])
   storeId   Int
-  product   Product   @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
   productId Int
-  price     Float?    // opcional: puedes tener precios distintos por tienda
-  active    Boolean   @default(true)
+  price     Float? // opcional: puedes tener precios distintos por tienda
+  active    Boolean @default(true)
 }
 
 model Booking {
-  id         Int      @id @default(autoincrement())
-  name       String
-  email      String
-  service    String
-  date       DateTime
-  message    String?
-  paid       Boolean  @default(false)
-  paymentId  String?
-  status     String   @default("pendiente") // 👈 este campo debe existir
-  createdAt  DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  service   String
+  date      DateTime
+  message   String?
+  paid      Boolean  @default(false)
+  paymentId String?
+  status    String   @default("pendiente") // 👈 este campo debe existir
+  createdAt DateTime @default(now())
 
-  store      Store    @relation(fields: [storeId], references: [id])
-  storeId    Int
+  store   Store @relation(fields: [storeId], references: [id])
+  storeId Int
 }
-
 
 model User {
   id        Int      @id @default(autoincrement())
@@ -68,3 +68,34 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+model Order {
+  id          Int      @id @default(autoincrement())
+  userEmail   String
+  totalAmount Float
+  paymentId   String?
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+
+  // nuevos campos de cliente/envío
+  customerName     String?
+  customerEmail    String?
+  customerAddress  String?
+  customerCity     String?
+  customerCountry  String?
+  customerPhone    String?
+
+  store   Store @relation(fields: [storeId], references: [id])
+  storeId Int
+
+  items OrderItem[]
+}
+
+model OrderItem {
+  id       Int     @id @default(autoincrement())
+  name     String
+  price    Float
+  quantity Int
+  imageUrl String?
+  order    Order   @relation(fields: [orderId], references: [id])
+  orderId  Int
+}
