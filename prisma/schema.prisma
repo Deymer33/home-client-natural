@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+datasource db_prod {
+  provider = "mysql"
+  url      = env("DATABASE_URL_PROD")
+}
+
 model Store {
   id        Int            @id @default(autoincrement())
   name      String // Ej: "México" o "USA"
