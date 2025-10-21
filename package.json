@@ -6,7 +6,7 @@
   "dev": "npx prisma generate --schema=prisma/schema.prisma && next dev --turbopack -p 9002",
   "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
   "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
-  "build": "npx prisma generate --schema=prisma/schema.prod.prisma && next build",
+  "build": "npx prisma generate --schema=prisma/schema.prod.prisma && npx prisma migrate deploy --schema=prisma/schema.prod.prisma && next build",
   "start": "next start",
   "lint": "next lint",
   "typecheck": "tsc --noEmit",
