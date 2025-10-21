@@ -93,5 +93,3 @@ model OrderItem {
   order    Order   @relation(fields: [orderId], references: [id])
   orderId  Int
 }
-
-seed = "ts-node prisma/seed.ts"
