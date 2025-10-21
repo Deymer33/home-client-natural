@@ -11,8 +11,8 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "postinstall": "npx prisma generate",
-    "prisma:migrate": "npx prisma migrate deploy --schema=prisma/schema.prod.prisma",
-    "prisma:seed": "npx prisma db seed --schema=prisma/schema.prod.prisma"
+    "prisma:migrate": "npx prisma migrate deploy --schema=prisma/schema.prisma",
+    "prisma:seed": "npx prisma db seed --schema=prisma/schema.prisma"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.0",
