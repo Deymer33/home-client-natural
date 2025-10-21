@@ -1,12 +1,9 @@
-// Prisma schema para producción (MySQL)
-// learn more: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = sqlite
   url      = env("DATABASE_URL")
 }
 
@@ -32,15 +29,13 @@ model Product {
 }
 
 model ProductStore {
-  id        Int      @id @default(autoincrement())
-  store     Store    @relation(fields: [storeId], references: [id])
+  id        Int     @id @default(autoincrement())
+  store     Store   @relation(fields: [storeId], references: [id])
   storeId   Int
-  product   Product  @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
   productId Int
   price     Float?
-  active    Boolean  @default(true)
-
-  @@unique([storeId, productId]) // evita duplicados por tienda-producto
+  active    Boolean @default(true)
 }
 
 model Booking {
@@ -54,7 +49,6 @@ model Booking {
   paymentId String?
   status    String   @default("pendiente")
   createdAt DateTime @default(now())
-
   store   Store @relation(fields: [storeId], references: [id])
   storeId Int
 }
@@ -70,24 +64,24 @@ model User {
 }
 
 model Order {
-  id              Int       @id @default(autoincrement())
-  userEmail       String
-  totalAmount     Float
-  paymentId       String?
-  status          String    @default("pending")
-  createdAt       DateTime  @default(now())
+  id          Int      @id @default(autoincrement())
+  userEmail   String
+  totalAmount Float
+  paymentId   String?
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
 
-  customerName    String?
-  customerEmail   String?
-  customerAddress String?
-  customerCity    String?
-  customerCountry String?
-  customerPhone   String?
+  customerName     String?
+  customerEmail    String?
+  customerAddress  String?
+  customerCity     String?
+  customerCountry  String?
+  customerPhone    String?
 
   store   Store @relation(fields: [storeId], references: [id])
   storeId Int
 
-  items   OrderItem[]
+  items OrderItem[]
 }
 
 model OrderItem {
