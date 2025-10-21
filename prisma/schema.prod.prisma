@@ -1,20 +1,19 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Prisma schema para producción (MySQL)
+// learn more: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-
 model Store {
   id        Int            @id @default(autoincrement())
-  name      String // Ej: "México" o "USA"
-  code      String         @unique // Ej: "mexico" o "usa"
+  name      String
+  code      String         @unique
   products  ProductStore[]
   bookings  Booking[]
   orders    Order[]
@@ -32,15 +31,16 @@ model Product {
   stores      ProductStore[]
 }
 
-// Relación intermedia que conecta productos y tiendas
 model ProductStore {
-  id        Int     @id @default(autoincrement())
-  store     Store   @relation(fields: [storeId], references: [id])
+  id        Int      @id @default(autoincrement())
+  store     Store    @relation(fields: [storeId], references: [id])
   storeId   Int
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
   productId Int
-  price     Float? // opcional: puedes tener precios distintos por tienda
-  active    Boolean @default(true)
+  price     Float?
+  active    Boolean  @default(true)
+
+  @@unique([storeId, productId]) // evita duplicados por tienda-producto
 }
 
 model Booking {
@@ -52,7 +52,7 @@ model Booking {
   message   String?
   paid      Boolean  @default(false)
   paymentId String?
-  status    String   @default("pendiente") // 👈 este campo debe existir
+  status    String   @default("pendiente")
   createdAt DateTime @default(now())
 
   store   Store @relation(fields: [storeId], references: [id])
@@ -64,31 +64,30 @@ model User {
   name      String?
   email     String   @unique
   password  String
-  role      String   @default("admin") // por ahora solo manejamos admin
+  role      String   @default("admin")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Order {
-  id          Int      @id @default(autoincrement())
-  userEmail   String
-  totalAmount Float
-  paymentId   String?
-  status      String   @default("pending")
-  createdAt   DateTime @default(now())
+  id              Int       @id @default(autoincrement())
+  userEmail       String
+  totalAmount     Float
+  paymentId       String?
+  status          String    @default("pending")
+  createdAt       DateTime  @default(now())
 
-  // nuevos campos de cliente/envío
-  customerName     String?
-  customerEmail    String?
-  customerAddress  String?
-  customerCity     String?
-  customerCountry  String?
-  customerPhone    String?
+  customerName    String?
+  customerEmail   String?
+  customerAddress String?
+  customerCity    String?
+  customerCountry String?
+  customerPhone   String?
 
   store   Store @relation(fields: [storeId], references: [id])
   storeId Int
 
-  items OrderItem[]
+  items   OrderItem[]
 }
 
 model OrderItem {
