@@ -32,10 +32,10 @@ export default function ProductTable() {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [selectedStore, setSelectedStore] = useState<string>("");
-
+  const [createImageUrl, setCreateImageUrl] = useState<string>("");
   const [editOpen, setEditOpen] = useState(false);
-const [editingProduct, setEditingProduct] = useState<ProductStore | null>(null);
-const [editForm, setEditForm] = useState({
+  const [editingProduct, setEditingProduct] = useState<ProductStore | null>(null);
+  const [editForm, setEditForm] = useState({
   name: "",
   description: "",
   basePrice: "",
@@ -114,6 +114,29 @@ const handleUpdate = async () => {
   }
 };
 
+
+const handleCreateImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  setUploading(true);
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const res = await fetch("/api/upload", { method: "POST", body: formData });
+
+  if (res.ok) {
+    const data = await res.json();
+    setCreateImageUrl(data.url);
+    toast.success("Imagen subida correctamente");
+  } else {
+    toast.error("Error al subir la imagen");
+  }
+
+  setUploading(false);
+};
+
+
 const handleEditImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
   const file = e.target.files?.[0];
   if (!file) return;
@@ -154,6 +177,7 @@ const handleEditImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => 
         description,
         basePrice: parseFloat(basePrice),
         stores,
+        imageUrl: createImageUrl,
       }),
     });
 
@@ -248,6 +272,27 @@ const handleEditImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => 
                     <option value="usa">USA</option>
                     <option value="ambas">Ambas</option>
                   </select>
+
+                    <div className="grid gap-2">
+                      <Label>Imagen del producto</Label>
+                      <div className="flex items-center gap-2">
+                        <Input type="file" accept="image/*" onChange={handleCreateImageUpload} />
+                        {uploading && <Loader2 className="w-5 h-5 animate-spin" />}
+                      </div>
+
+                      {createImageUrl ? (
+                        <img
+                          src={createImageUrl}
+                          alt="Preview"
+                          className="w-32 h-32 object-cover rounded-md mt-2 border"
+                        />
+                      ) : (
+                        <div className="w-32 h-32 bg-gray-100 flex items-center justify-center text-xs text-gray-500 rounded-md border">
+                          Sin imagen
+                        </div>
+                      )}
+                    </div>
+
                 </div>
               </div>
                 <DialogFooter>
