@@ -13,9 +13,9 @@ import Logo from "@/components/logo";
 import { useCart } from "@/context/cart-context";
 
 const navLinks = [
-  { href: "/products", label: "Products" },
+  { href: "/home", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/locations", label: "Locations" },
+  { href: "/", label: "Stores" },
   { href: "/about", label: "About Us" },
 ];
 
