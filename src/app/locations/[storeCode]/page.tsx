@@ -26,7 +26,7 @@ export default function StorePage() {
   const [products, setProducts] = useState<ProductStore[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // ✅ useCart dentro del componente
+  // useCart dentro del componente
   const { addItem } = useCart();
 
   useEffect(() => {

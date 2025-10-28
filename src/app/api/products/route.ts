@@ -5,12 +5,14 @@ import { prisma } from "@/lib/prisma";
 // GET - lista productos por tienda
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const storeCode = searchParams.get("store"); // ejemplo: ?store=mexico
+  const storeCode = searchParams.get("store"); 
 
   const products = await prisma.productStore.findMany({
-    where: storeCode
-      ? { store: { code: storeCode } }
-      : undefined,
+    where: {
+      active: true, 
+      product: { active: true }, 
+      ...(storeCode ? { store: { code: storeCode } } : {}), 
+    },
     include: {
       store: true,
       product: true,
