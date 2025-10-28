@@ -54,7 +54,7 @@ export default function ProductTable() {
 
   const fetchProducts = async () => {
     setLoading(true);
-    const res = await fetch(`/api/products${selectedStore ? `?store=${selectedStore}` : ""}`);
+    const res = await fetch(`/api/admin/products${selectedStore ? `?store=${selectedStore}` : ""}`);
     const data = await res.json();
     setProducts(data);
     setLoading(false);
