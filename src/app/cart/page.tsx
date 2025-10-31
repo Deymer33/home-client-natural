@@ -5,12 +5,23 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Button } from "@/components/ui/button";
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import { CheckCircle } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
 
 
 
 export default function CartPage() {
   const { items, total, clearCart } = useCart();
   const { storeCode } = useParams();
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+
 
   // 🧾 Estado para los datos del usuario
   const [customer, setCustomer] = useState({
@@ -43,33 +54,47 @@ export default function CartPage() {
   };
 
   const handleApprove = async (data: any, actions: any) => {
-    const details = await actions.order.capture();
-    const paymentId = details.id;
+  const details = await actions.order.capture();
+  const paymentId = details.id;
 
-    // 🔥 Guarda la orden y los datos del cliente
-    await fetch("/api/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userEmail: details.payer.email_address,
-        totalAmount: total,
-        paymentId,
-        storeId: 1, // 🔧 deberás obtenerlo según storeCode
-        items,
-        customer, // enviamos los datos del formulario
-      }),
-    });
+  await fetch("/api/orders", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userEmail: details.payer.email_address,
+      totalAmount: total,
+      paymentId,
+      storeId: 1,
+      items,
+      customer,
+    }),
+  });
 
-    clearCart();
-    alert("Pago completado y orden registrada ✅");
-  };
+  clearCart();
+
+  // ✅ Espera a que PayPal cierre su popup
+  setTimeout(() => setPaymentSuccess(true), 400);
+};
+
 
   if (items.length === 0)
-    return (
-      <div className="container py-12 text-center">
-        <h1 className="text-3xl font-bold mb-4">Tu carrito está vacío 🛍️</h1>
-      </div>
-    );
+  return (
+    <div className="container py-12 text-center">
+      <h1 className="text-3xl font-bold mb-4">Tu carrito está vacío</h1>
+
+      {/* Mensaje simple si el pago fue exitoso */}
+      {paymentSuccess && (
+        <div
+          role="status"
+          className="inline-flex items-center gap-2 mt-4 px-4 py-3 rounded-md bg-green-50 text-green-800 border border-green-200"
+        >
+          <CheckCircle className="w-6 h-6" />
+          <span>Pago exitoso — ¡gracias por tu compra!</span>
+        </div>
+      )}
+    </div>
+  );
+
 
   return (
     <div className="container py-12">
@@ -229,6 +254,27 @@ export default function CartPage() {
           </Button>
         </div>
       </div>
+      <Dialog open={paymentSuccess} onOpenChange={setPaymentSuccess}>
+        <DialogContent className="text-center border-4 border-red-500 z-[2147483647]">
+          <DialogHeader>
+            <CheckCircle className="w-14 h-14 text-green-600 mx-auto mb-4" />
+
+            <DialogTitle className="text-2xl font-bold">
+              ¡Pago exitoso!
+            </DialogTitle>
+
+            <DialogDescription className="text-lg">
+              Tu pago fue procesado correctamente y tu orden ha sido registrada.
+            </DialogDescription>
+          </DialogHeader>
+
+          <DialogFooter className="mt-4">
+            <Button className="w-full" onClick={() => setPaymentSuccess(false)}>
+              Cerrar
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
